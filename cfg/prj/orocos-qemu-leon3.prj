@@ -1,0 +1,31 @@
+####################################################################################################
+#
+#  vi: set ft=make:
+#
+#  Specific project params.
+#
+####################################################################################################
+
+# plataorm parameters
+plt_file = $(wrmdir)/cfg/plt/sparc-qemu-leon3.plt
+
+# toolchain
+gccprefix = sparc-linux-
+
+# debug flags
+usr_lib_dbg      = 1
+usr_krn_dbg      = 1
+usr_krn_log      = 1
+usr_app_dbg      = 1
+usr_ldr_dbg      = 1
+
+# files to put in the ramfs
+#                  name:path
+usr_ramfs        = config.alph:$(extdir)/cfg/alph/orocos.alph
+usr_ramfs       += uart.elf:$(blddir)/app/uart/uart.elf
+usr_ramfs       += console.elf:$(blddir)/app/console/console.elf
+usr_ramfs       += orocos.elf:$(blddir)/app/orocos/orocos.elf
+#usr_ramfs      += chello.elf:$(blddir)/app/chello/chello.elf
+
+# base file to set all project params
+include $(wrmdir)/cfg/base.cfg

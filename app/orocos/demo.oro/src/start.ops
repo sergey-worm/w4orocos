@@ -1,0 +1,38 @@
+// Start this script by using:
+// deployer-gnulinux -s start.ops -linfo
+
+// For ROS builds, we could also import using the package name.
+import("orocos/gnulinux/demo.oro/libdemocomponents-gnulinux.so")
+
+loadComponent("cntrl","Controller")
+loadComponent("servo","Servo")
+loadComponent("encdr","Encoder")
+loadComponent("shaft","Shaft")
+loadComponent("timer","OCL::TimerComponent")
+
+connect("cntrl.tx-servo","servo.rx-cntrl", ConnPolicy())
+connectPeers("servo", "shaft")
+connectPeers("encdr", "shaft")
+connectPeers("encdr", "cntrl")
+
+setActivity("cntrl", 1.0, LowestPriority, ORO_SCHED_OTHER)
+setActivity("encdr", 0.5, LowestPriority, ORO_SCHED_OTHER)
+
+
+cntrl.configure()
+servo.configure()
+encdr.configure()
+shaft.configure()
+
+cntrl.start()
+servo.start()
+encdr.start()
+shaft.start()
+
+
+timer.wait(1, 3)
+
+cntrl.stop()
+servo.stop()
+encdr.stop()
+shaft.stop()
