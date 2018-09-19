@@ -57,10 +57,11 @@ $(blddir)/orocos/src/orocos_toolchain/.git:
 	mv $(blddir)/orocos/src/orocos_toolchain/rtt/package.xml \
 		$(blddir)/orocos/src/orocos_toolchain/rtt/_package.xml
 	mv $(blddir)/orocos/src/orocos_toolchain/rtt $(blddir)/orocos/src/orocos_toolchain/rtt.orig
-	rtt_base_url=$(shell dirname $(git config --get remote.origin.url))  && \
-		if [ "$$rtt_base_url" == "" ]; then rtt_base_url=https://github.com/sergey-worm; fi  && \
-		echo rtt_base_url=$$rtt_base_url  && \
-		git clone -b wrmos $$rtt_base_url/rtt.git $(blddir)/orocos/src/orocos_toolchain/rtt
+	# shell variable RTT_REPO_URL allows to override URL of RTT repo
+	rtt_repo_url=$(RTT_REPO_URL)  && \
+		if [ "$$rtt_repo_url" == "" ]; then rtt_repo_url=https://github.com/wrmlab/rtt.git; fi  && \
+		echo rtt_repo_url=$$rtt_repo_url  && \
+		git clone -b wrmos $$rtt_repo_url $(blddir)/orocos/src/orocos_toolchain/rtt
 
 clean-files::
 	rm -fr $(blddir)/orocos/build_isolated
