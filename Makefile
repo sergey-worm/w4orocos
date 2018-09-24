@@ -82,7 +82,7 @@ localhost-clean-orocos:
 localhost-build-demo:
 	mkdir -p $B/demo.oro/build
 	cd $B/demo.oro/build  && \
-		source ../../orocos/install_isolated/setup.sh  && \
+		. ../../orocos/install_isolated/setup.sh  && \
 			cmake ..  \
 				-DOROCOS_TARGET=gnulinux \
 				-DOROCOS_INSTALL_DIR=$(abspath $B)/orocos/install_isolated \

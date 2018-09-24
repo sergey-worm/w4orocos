@@ -19,7 +19,7 @@ libs       += $(rtblddir)/lib/wpthread/libwpthread.a
 libs       += $(rtblddir)/lib/orocos/liborocos.a
 
 oro_ld_flags := -nostdlib -Wl,--start-group $(libs) -lgcc -lgcc_eh -lstdc++ -latomic
-oro_ld_flags += /home/worm/Bin/Toolchains/__sparc_uclibc-1.0.17_libm.a
+oro_ld_flags += $(shell $(gccprefix)gcc -print-sysroot)/../../libm.a
 oro_ld_flags += -Wl,--end-group -Wl,-T$(blddir)/link.ld
 
 oro_install_dir = $(blddir)/../../lib/orocos/orocos/install_isolated

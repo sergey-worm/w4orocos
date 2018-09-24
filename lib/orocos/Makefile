@@ -59,7 +59,7 @@ $(blddir)/orocos/src/orocos_toolchain/.git:
 	mv $(blddir)/orocos/src/orocos_toolchain/rtt $(blddir)/orocos/src/orocos_toolchain/rtt.orig
 	# shell variable RTT_REPO_URL allows to override URL of RTT repo
 	rtt_repo_url=$(RTT_REPO_URL)  && \
-		if [ "$$rtt_repo_url" == "" ]; then rtt_repo_url=https://github.com/wrmlab/rtt.git; fi  && \
+		if [ "$$rtt_repo_url" = "" ]; then rtt_repo_url=https://github.com/wrmlab/rtt.git; fi  && \
 		echo rtt_repo_url=$$rtt_repo_url  && \
 		git clone -b wrmos $$rtt_repo_url $(blddir)/orocos/src/orocos_toolchain/rtt
 
